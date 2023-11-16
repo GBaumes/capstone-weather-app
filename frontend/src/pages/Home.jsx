@@ -1,10 +1,16 @@
-import React from "react";
+import CityForm from "../components/CityForm";
 
 const Home = () => {
   return (
     <div className="home">
-      <h1>Hi</h1>
+      <div className="container">
+        <div className="row justify-content-center align-items-center">
+          <CityForm />
+        </div>
+      </div>
     </div>
+
+    // Search Box
   );
 };
 
