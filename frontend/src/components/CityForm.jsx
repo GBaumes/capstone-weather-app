@@ -18,6 +18,7 @@ const CityForm = () => {
     // env variables
     const apiKey = process.env.REACT_APP_API_KEY;
     const apiURL = process.env.REACT_APP_API_URL;
+
     setUnitType(units); // Set the units in the context
 
     try {
@@ -52,14 +53,14 @@ const CityForm = () => {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <div className="d-flex justify-content-center flex-column flex-sm-row">
-          <div className="mb-3">
+        <div className="d-flex justify-content-center flex-column flex-lg-row">
+          <div className="input-field d-flex flex-column align-items-center justify-content-center mb-3 text-center">
             <label htmlFor="city" className="form-label">
               City
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control w-75"
               id="city"
               aria-describedby="cityHelp"
               placeholder="Enter city name here"
@@ -69,13 +70,13 @@ const CityForm = () => {
             />
           </div>
 
-          <div className="mb-3">
+          <div className="input-field d-flex flex-column align-items-center justify-content-center mb-3 text-center">
             <label htmlFor="country" className="form-label">
               Country
             </label>
             <CountryDropdown
               id="country"
-              className="form-select"
+              className="form-select w-75"
               valueType="short"
               value={country}
               onChange={(val) => {
@@ -84,16 +85,16 @@ const CityForm = () => {
             />
           </div>
           {country === "US" && (
-            <div className="mb-3">
+            <div className="input-field d-flex flex-column align-items-center justify-content-center mb-3 text-center">
               <label htmlFor="state" className="form-label">
                 State
               </label>
               <RegionDropdown
                 id="state"
-                className="form-select"
+                className="form-select w-75"
                 valueType="short"
                 countryValueType="short"
-                blankOptionLabel="Select State"
+                defaultOptionLabel="Select State"
                 country={country}
                 value={state}
                 onChange={(val) => {
