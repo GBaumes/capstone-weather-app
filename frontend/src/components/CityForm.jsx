@@ -1,53 +1,141 @@
-import React, { useState } from "react";
-import {
-  CountryDropdown,
-  RegionDropdown,
-  CountryRegionData,
-} from "react-country-region-selector";
+import { useState } from "react";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import { useWeather } from "../contexts/WeatherContext";
 
 const CityForm = () => {
+  // Context for storing the data and using it in other components
+  const { setWeather, setUnitType } = useWeather();
+
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [region, setRegion] = useState("");
+  const [state, setState] = useState("");
+  const [units, setUnits] = useState("imperial");
+  const [error, setError] = useState(0);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevents page from reloading
+
+    // env variables
+    const apiKey = process.env.REACT_APP_API_KEY;
+    const apiURL = process.env.REACT_APP_API_URL;
+    setUnitType(units); // Set the units in the context
+
+    try {
+      // API Call
+      let response;
+      // Open weather API only allows state lookup for US
+      if (country !== "US") {
+        response = await fetch(
+          apiURL + `q=${city},${country}&units=${units}&appid=${apiKey}`
+        );
+      } else if (country === "US") {
+        response = await fetch(
+          apiURL +
+            `q=${city},${state},${country}&units=${units}&appid=${apiKey}`
+        );
+      }
+
+      const json = await response.json();
+      if (!response.ok) {
+        console.log(json);
+        setError(response.status);
+        console.log(error);
+      }
+      if (response.ok) {
+        console.log("weather data retrieved", json);
+        setWeather(json); // Set the weather data in the context
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="container">
-      <form>
-        <div className="mb-3">
-          <label for="city" className="form-label">
-            City
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="city"
-            aria-describedby="cityHelp"
-            placeholder="Enter city name here"
-          />
+      <form onSubmit={handleSubmit}>
+        <div className="d-flex justify-content-center flex-column flex-sm-row">
+          <div className="mb-3">
+            <label htmlFor="city" className="form-label">
+              City
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="city"
+              aria-describedby="cityHelp"
+              placeholder="Enter city name here"
+              onChange={(e) => {
+                setCity(e.target.value);
+              }}
+            />
+          </div>
 
-          <label for="country">Country</label>
-          <CountryDropdown
-            id="country"
-            className="form-control"
-            value={country}
-            onChange={(val) => {
-              setCountry(val);
-            }}
-          />
-
-          <label for="region">Region</label>
-          <RegionDropdown
-            id="region"
-            className="form-control"
-            country={country}
-            value={region}
-            onChange={(val) => {
-              setRegion(val);
-            }}
-          />
-
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
+          <div className="mb-3">
+            <label htmlFor="country" className="form-label">
+              Country
+            </label>
+            <CountryDropdown
+              id="country"
+              className="form-select"
+              valueType="short"
+              value={country}
+              onChange={(val) => {
+                setCountry(val);
+              }}
+            />
+          </div>
+          {country === "US" && (
+            <div className="mb-3">
+              <label htmlFor="state" className="form-label">
+                State
+              </label>
+              <RegionDropdown
+                id="state"
+                className="form-select"
+                valueType="short"
+                countryValueType="short"
+                blankOptionLabel="Select State"
+                country={country}
+                value={state}
+                onChange={(val) => {
+                  setState(val);
+                }}
+              />
+            </div>
+          )}
+        </div>
+        <div className="mb-3 d-flex justify-content-center">
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="imperial"
+              checked={units === "imperial"}
+              onChange={(e) => {
+                setUnits(e.target.id);
+              }}
+            />
+            <label className="form-check-label me-2" htmlFor="imperial">
+              &deg;F
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="metric"
+              onChange={(e) => {
+                setUnits(e.target.id);
+              }}
+            />
+            <label className="form-check-label" htmlFor="metric">
+              &deg;C
+            </label>
+          </div>
+        </div>
+        <div className="mb-3 d-flex justify-content-center">
+          <button className="btn btn-primary">Enter</button>
         </div>
       </form>
     </div>
