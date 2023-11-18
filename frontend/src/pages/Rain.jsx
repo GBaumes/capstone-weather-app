@@ -5,7 +5,7 @@ import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import XYZ from "ol/source/XYZ";
 
-const Radar = () => {
+const Rain = () => {
   const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
@@ -40,9 +40,11 @@ const Radar = () => {
 
   return (
     <div className="container">
+      <h1 className="text-center">Rain Map</h1>
+      <p className="text-center">Current world precipitation map.</p>
       <div id="map" style={{ width: "100%", height: "85vh" }}></div>
     </div>
   );
 };
 
-export default Radar;
+export default Rain;
