@@ -10,7 +10,7 @@ const CityForm = () => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [units, setUnits] = useState("imperial");
-  const [error, setError] = useState(0);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents page from reloading
@@ -20,7 +20,10 @@ const CityForm = () => {
     const apiURL = process.env.REACT_APP_API_URL;
 
     setUnitType(units); // Set the units in the context
-
+    if (city === "") {
+      setError(400);
+      return;
+    }
     try {
       // API Call
       let response;
@@ -38,16 +41,16 @@ const CityForm = () => {
 
       const json = await response.json();
       if (!response.ok) {
-        console.log(json);
         setError(response.status);
-        console.log(error);
+        setWeather(null);
       }
       if (response.ok) {
-        console.log("weather data retrieved", json);
         setWeather(json); // Set the weather data in the context
+        setError(response.status);
+        console.log(json);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (tryError) {
+      console.log(tryError);
     }
   };
   return (
@@ -139,6 +142,17 @@ const CityForm = () => {
           <button className="btn btn-primary">Enter</button>
         </div>
       </form>
+      {error === 400 ? (
+        <div className="error text-center">
+          Missing input please try again...
+        </div>
+      ) : (
+        error === 404 && (
+          <div className="error text-center">
+            No city found please try again...
+          </div>
+        )
+      )}
     </div>
   );
 };
