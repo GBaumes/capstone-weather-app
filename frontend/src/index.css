@@ -12,11 +12,6 @@ code {
     monospace;
 }
 
-* {
-  /* border: 1px black solid; */
-  background-color: gray;
-}
-
 .input-field {
   flex: 1;
 }
