@@ -97,7 +97,6 @@ const Forecast = () => {
   }, [units, weatherData]);
 
   if (weatherData !== null && forecast.length > 0) {
-    console.log("current Forecast: ", forecast);
     return (
       <div className="container">
         <div className="display-5 text-center pb-2">5-Day Forecast</div>
