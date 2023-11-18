@@ -45,21 +45,10 @@ const Navbar = () => {
                   About
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <button
-                  type="button"
-                  className="nav-link dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                >
-                  Radar Maps
-                </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to="/rain">
-                      Rain Map
-                    </Link>
-                  </li>
-                </ul>
+              <li className="nav-item">
+                <Link className="nav-link" to="/radar">
+                  Radar
+                </Link>
               </li>
             </ul>
           </div>
