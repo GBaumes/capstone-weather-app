@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
+import { useWeather } from "../contexts/WeatherContext";
 
 const Navbar = () => {
+  const { setWeather } = useWeather();
+
+  const handleIconClick = async (event) => {
+    setWeather(null);
+  };
+
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -12,6 +19,7 @@ const Navbar = () => {
               src="https://img.icons8.com/color/48/partly-cloudy-day--v1.png"
               alt="partly-cloudy-day--v1"
               className="d-inline-block align-text-center"
+              onClick={handleIconClick}
             />
           </Link>
           <button
@@ -37,10 +45,21 @@ const Navbar = () => {
                   About
                 </Link>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/radar">
-                  Radar
-                </a>
+              <li className="nav-item dropdown">
+                <button
+                  type="button"
+                  className="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                >
+                  Radar Maps
+                </button>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to="/rain">
+                      Rain Map
+                    </Link>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>
