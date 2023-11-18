@@ -1,9 +1,5 @@
-import { useWeather } from "../contexts/WeatherContext";
-
-const WeatherImage = () => {
-  const { weatherData } = useWeather();
-
-  switch (weatherData.weather[0].main) {
+const WeatherImage = ({ condition }) => {
+  switch (condition) {
     case "Thunderstorm":
       return (
         <img
