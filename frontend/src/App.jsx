@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
-import Rain from "./pages/Rain";
+import Radar from "./pages/Radar";
 import Footer from "./components/Footer";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/rain" element={<Rain />} />
+            <Route path="/radar" element={<Radar />} />
           </Routes>
         </div>
         <Footer />
