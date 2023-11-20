@@ -71,7 +71,7 @@ const Radar = () => {
   }, [apiKey, currentLayer]);
 
   return (
-    <div className="container d-flex flex-column justify-content-center align-items-center">
+    <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
       <h1>{capitalizeFirstLetter(layerName)} Map</h1>
       <select
         className="form-select w-25 mb-2"
@@ -85,7 +85,7 @@ const Radar = () => {
         <option value="temp_new">Temp</option>
       </select>
       <p>Current world {layerName} map.</p>
-      <div id="map" style={{ width: "100%", height: "85vh" }}></div>
+      <div id="map" style={{ width: "100%", height: "75vh" }}></div>
     </div>
   );
 };
