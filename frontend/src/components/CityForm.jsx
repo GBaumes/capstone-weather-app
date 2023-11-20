@@ -66,7 +66,7 @@ const CityForm = () => {
     }
   };
   return (
-    <div className="container text-white">
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="d-flex justify-content-center flex-column flex-lg-row">
           <div className="input-field d-flex flex-column align-items-center justify-content-center mb-3 text-center">

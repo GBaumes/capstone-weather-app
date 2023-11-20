@@ -42,7 +42,7 @@ const WeatherInfo = () => {
 
   if (weatherData && geoData) {
     return (
-      <div className="container text-white">
+      <div className="container">
         {units === "imperial" ? (
           <>
             <div className="row">
