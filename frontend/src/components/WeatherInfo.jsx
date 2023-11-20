@@ -1,6 +1,25 @@
 import React from "react";
 import { useWeather } from "../contexts/WeatherContext";
 import WeatherImage from "./WeatherImage";
+import { getName, overwrite } from "country-list";
+
+// Overwrite default names from coutry-list data to make them shorter on display
+const nameOverwrite = [
+  {
+    code: "GB",
+    name: "United Kingdom",
+  },
+  {
+    code: "US",
+    name: "United States",
+  },
+  {
+    code: "RU",
+    name: "Russia",
+  },
+];
+
+overwrite(nameOverwrite);
 
 const getLocalTime = (time, timezone) => {
   const date = new Date((time + timezone) * 1000);
@@ -19,13 +38,27 @@ const getLocalTime = (time, timezone) => {
 };
 
 const WeatherInfo = () => {
-  const { weatherData, units } = useWeather();
+  const { weatherData, units, geoData } = useWeather();
 
-  if (weatherData) {
+  if (weatherData && geoData) {
     return (
-      <div className="container">
+      <div className="container text-white">
         {units === "imperial" ? (
           <>
+            <div className="row">
+              {geoData[0].country === "US" ? (
+                <div className="display-5 text-center pb-2">
+                  {weatherData.name}, {geoData[0].state},{" "}
+                  {getName(geoData[0].country)}
+                </div>
+              ) : (
+                geoData[0].country !== "US" && (
+                  <div className="display-5 text-center pb-2">
+                    {weatherData.name}, {getName(geoData[0].country)}
+                  </div>
+                )
+              )}
+            </div>
             <div className="row justify-content-center align-items-center">
               <div className="col-6 text-end">
                 <h1>{Math.round(weatherData.main.temp)}&deg;F</h1>
@@ -128,6 +161,20 @@ const WeatherInfo = () => {
         ) : (
           units === "metric" && (
             <>
+              <div className="row">
+                {geoData[0].country === "US" ? (
+                  <div className="display-5 text-center pb-2">
+                    {weatherData.name}, {geoData[0].state},{" "}
+                    {getName(geoData[0].country)}
+                  </div>
+                ) : (
+                  geoData[0].country !== "US" && (
+                    <div className="display-5 text-center pb-2">
+                      {weatherData.name}, {getName(geoData[0].country)}
+                    </div>
+                  )
+                )}
+              </div>
               <div className="row justify-content-center align-items-center">
                 <div className="col-6 text-end">
                   <h1>{Math.round(weatherData.main.temp)}&deg;C</h1>
