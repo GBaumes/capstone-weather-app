@@ -4,7 +4,7 @@ import { useWeather } from "../contexts/WeatherContext";
 
 const CityForm = () => {
   // Context for storing the data and using it in other components
-  const { setWeather, setUnitType } = useWeather();
+  const { setWeather, setUnitType, setGeo } = useWeather();
 
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
@@ -18,6 +18,7 @@ const CityForm = () => {
     // env variables
     const apiKey = process.env.REACT_APP_API_KEY;
     const apiURL = process.env.REACT_APP_API_URL;
+    const apiGeo = process.env.REACT_APP_API_URL_GEO;
 
     setUnitType(units); // Set the units in the context
     if (city === "") {
@@ -48,18 +49,29 @@ const CityForm = () => {
         setWeather(json); // Set the weather data in the context
         setError(response.status);
         console.log(json);
+
+        const responseGeo = await fetch(
+          apiGeo +
+            `lat=${json.coord.lat}&lon=${json.coord.lon}&limit=1&appid=${apiKey}`
+        );
+
+        const jsonGeo = await responseGeo.json();
+
+        setGeo(jsonGeo);
+
+        console.log(jsonGeo);
       }
     } catch (tryError) {
       console.log(tryError);
     }
   };
   return (
-    <div className="container">
+    <div className="container text-white">
       <form onSubmit={handleSubmit}>
         <div className="d-flex justify-content-center flex-column flex-lg-row">
           <div className="input-field d-flex flex-column align-items-center justify-content-center mb-3 text-center">
             <label htmlFor="city" className="form-label">
-              City
+              City (required)
             </label>
             <input
               type="text"
