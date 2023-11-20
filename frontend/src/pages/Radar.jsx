@@ -78,11 +78,11 @@ const Radar = () => {
         onChange={handleLayerChange}
         value={currentLayer}
       >
-        <option value="precipitation_new">Precipitation</option>
+        <option value="precipitation_new">Rain</option>
         <option value="clouds_new">Clouds</option>
         <option value="pressure_new">Pressure</option>
         <option value="wind_new">Wind</option>
-        <option value="temp_new">Temperature</option>
+        <option value="temp_new">Temp</option>
       </select>
       <p>Current world {layerName} map.</p>
       <div id="map" style={{ width: "100%", height: "85vh" }}></div>
