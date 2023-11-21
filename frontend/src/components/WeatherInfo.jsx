@@ -60,7 +60,7 @@ const WeatherInfo = () => {
               )}
             </div>
             <div className="row justify-content-center align-items-center">
-              <div className="col-5 text-end">
+              <div className="col-lg-5 text-center text-xxl-end">
                 <h1>{Math.round(weatherData.main.temp)}&deg;F</h1>
                 <p>
                   <strong>High: </strong>{" "}
@@ -71,14 +71,13 @@ const WeatherInfo = () => {
                   &deg;F
                   <br />
                   <strong>Condition: </strong> {weatherData.weather[0].main}
+                  <br />
+                  <WeatherImage condition={weatherData.weather[0].main} />
                 </p>
               </div>
-              <div className="col-1">
-                <WeatherImage condition={weatherData.weather[0].main} />
-              </div>
-              <div className="col-6">
-                <div className="row">
-                  <div className="col-2 text-center">
+              <div className="col-xxl-6">
+                <div className="row d-lg-flex flex-row justify-content-center justify-content-xxl-start">
+                  <div className="col-4 col-md-2 text-center">
                     <img
                       width="32"
                       height="32"
@@ -91,7 +90,7 @@ const WeatherInfo = () => {
                       {weatherData.clouds.all}%
                     </p>
                   </div>
-                  <div className="col-2 text-center">
+                  <div className="col-4 col-md-2 text-center">
                     <img
                       width="32"
                       height="32"
@@ -104,7 +103,7 @@ const WeatherInfo = () => {
                       {Math.round(weatherData.wind.speed)} mph
                     </p>
                   </div>
-                  <div className="col-2 text-center">
+                  <div className="col-4 col-md-2 text-center">
                     <img
                       width="32"
                       height="32"
@@ -118,8 +117,8 @@ const WeatherInfo = () => {
                     </p>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-2 text-center">
+                <div className="row d-lg-flex flex-row justify-content-center justify-content-xxl-start">
+                  <div className="col-4 col-md-2 text-center">
                     <img
                       width="32"
                       height="32"
@@ -132,7 +131,7 @@ const WeatherInfo = () => {
                       {weatherData.main.pressure} hPa
                     </p>
                   </div>
-                  <div className="col-2 text-center">
+                  <div className="col-4 col-md-2 text-center">
                     <img
                       width="32"
                       height="32"
@@ -148,7 +147,7 @@ const WeatherInfo = () => {
                       )}
                     </p>
                   </div>
-                  <div className="col-2 text-center">
+                  <div className="col-4 col-md-2 text-center">
                     <img
                       width="32"
                       height="32"
