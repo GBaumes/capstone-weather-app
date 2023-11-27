@@ -1,18 +1,30 @@
+/*
+  CityFrom.jsx component which renders the form for user input. Uses different hooks to track
+  the user input data and call the OpenWeather API and return the data pertaining to the
+  user input as json.
+  Also uses the WeatherContext.jsx file to track the user inputted data so that it can be used in
+  other files.
+*/
 import { useState } from "react";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { useWeather } from "../contexts/WeatherContext";
 
 const CityForm = () => {
-  // Context for storing the data and using it in other components
+  // WeatherContext.jsx context for storing the data from the form.
   const { setWeather, setUnitType, setGeo, setWelcome, showWelcome } =
     useWeather();
 
+  // useState hooks
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [units, setUnits] = useState("imperial");
   const [error, setError] = useState(null);
 
+  /*
+    handleSubmit function that is called when the user submits the form from the 
+    rendered input using the button in the form or hitting the enter button.
+  */
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents page from reloading
     setWelcome(false);
@@ -22,11 +34,15 @@ const CityForm = () => {
     const apiURL = process.env.REACT_APP_API_URL;
     const apiGeo = process.env.REACT_APP_API_URL_GEO;
 
-    setUnitType(units); // Set the units in the context
+    // Set the units in the context
+    setUnitType(units);
+
+    // Check if the city input is empty
     if (city === "") {
       setError(400);
       return;
     }
+
     try {
       // API Call
       let response;
@@ -42,7 +58,10 @@ const CityForm = () => {
         );
       }
 
+      // response turned into json
       const json = await response.json();
+
+      // Check if the response is ok if not set an Error
       if (!response.ok) {
         setError(response.status);
         setWeather(null);
@@ -64,6 +83,8 @@ const CityForm = () => {
       console.log(tryError);
     }
   };
+
+  // rendered html
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
