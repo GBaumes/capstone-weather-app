@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { useWeather } from "../contexts/WeatherContext";
 
 const Navbar = () => {
-  const { setWeather } = useWeather();
+  const { setWeather, setWelcome } = useWeather();
 
   const handleIconClick = async (event) => {
     setWeather(null);
+    setWelcome(true);
   };
 
   return (

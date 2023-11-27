@@ -4,7 +4,8 @@ import { useWeather } from "../contexts/WeatherContext";
 
 const CityForm = () => {
   // Context for storing the data and using it in other components
-  const { setWeather, setUnitType, setGeo } = useWeather();
+  const { setWeather, setUnitType, setGeo, setWelcome, showWelcome } =
+    useWeather();
 
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
@@ -14,6 +15,7 @@ const CityForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevents page from reloading
+    setWelcome(false);
 
     // env variables
     const apiKey = process.env.REACT_APP_API_KEY;
@@ -164,6 +166,19 @@ const CityForm = () => {
             No city found please try again...
           </div>
         )
+      )}
+
+      {showWelcome && (
+        <div>
+          <h2 className="text-center">Welcome to my Weather App.</h2>
+          <p className="text-center">
+            Please enter the name of the city you would like to find along with
+            the country from the dropdown.
+            <br />
+            If the city is in the United States please select the state from the
+            corresponding dropdown aswell
+          </p>
+        </div>
       )}
     </div>
   );

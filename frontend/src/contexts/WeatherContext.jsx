@@ -6,6 +6,11 @@ export const WeatherProvider = ({ children }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [units, setUnits] = useState("");
   const [geoData, setGeoData] = useState(null);
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  const setWelcome = (data) => {
+    setShowWelcome(data);
+  };
 
   const setWeather = (data) => {
     setWeatherData(data);
@@ -28,6 +33,8 @@ export const WeatherProvider = ({ children }) => {
         setUnitType,
         geoData,
         setGeo,
+        showWelcome,
+        setWelcome,
       }}
     >
       {children}
