@@ -166,86 +166,6 @@ const WeatherInfo = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="row justify-content-center align-items center">
-              <div className="col-sm-6 col-lg-1 text-lg-center text-sm-end text-center">
-                <img
-                  width="48"
-                  height="48"
-                  src="https://img.icons8.com/color/48/cloud.png"
-                  alt="cloud"
-                />
-                <p>
-                  <strong>Cloud %</strong>
-                  <br />
-                  {weatherData.clouds.all}%
-                </p>
-              </div>
-              <div className="col-sm-6 col-lg-1 text-lg-center text-sm-start text-center">
-                <img
-                  width="48"
-                  height="48"
-                  src="https://img.icons8.com/color/96/windsock--v1.png"
-                  alt="windsock--v1"
-                />
-                <p>
-                  <strong>Wind</strong>
-                  <br />
-                  {Math.round(weatherData.wind.speed)} mph
-                </p>
-              </div>
-              <div className="col-sm-6 col-lg-1 text-lg-center text-sm-end text-center">
-                <img
-                  width="48"
-                  height="48"
-                  src="https://img.icons8.com/color/96/hygrometer.png"
-                  alt="hygrometer"
-                />
-                <p>
-                  <strong>Humidity</strong>
-                  <br />
-                  {weatherData.main.humidity}%
-                </p>
-              </div>
-              <div className="col-sm-6 col-lg-1 text-lg-center text-sm-start text-center">
-                <img
-                  width="48"
-                  height="48"
-                  src="https://img.icons8.com/color/48/atmospheric-pressure.png"
-                  alt="atmospheric-pressure"
-                />
-                <p>
-                  <strong>Pressure</strong>
-                  <br />
-                  {weatherData.main.pressure} hPa
-                </p>
-              </div>
-              <div className="col-sm-6 col-lg-1 text-lg-center text-sm-end text-center">
-                <img
-                  width="48"
-                  height="48"
-                  src="https://img.icons8.com/color/48/sunrise.png"
-                  alt="sunrise"
-                />
-                <p>
-                  <strong>Sunrise</strong>
-                  <br />
-                  {getLocalTime(weatherData.sys.sunrise, weatherData.timezone)}
-                </p>
-              </div>
-              <div className="col-sm-6 col-lg-1 text-lg-center text-sm-start text-center">
-                <img
-                  width="48"
-                  height="48"
-                  src="https://img.icons8.com/color/48/sunset.png"
-                  alt="sunset"
-                />
-                <p>
-                  <strong>Sunset</strong>
-                  <br />
-                  {getLocalTime(weatherData.sys.sunset, weatherData.timezone)}
-                </p>
-              </div>
-            </div> */}
           </>
         ) : (
           units === "metric" && (
@@ -265,7 +185,7 @@ const WeatherInfo = () => {
                 )}
               </div>
               <div className="row justify-content-center align-items-center">
-                <div className="col-6 text-end">
+                <div className="col-lg-5 text-center text-xxl-end">
                   <h1>{Math.round(weatherData.main.temp)}&deg;C</h1>
                   <p>
                     <strong>High: </strong>{" "}
@@ -277,93 +197,99 @@ const WeatherInfo = () => {
                     &deg;C
                     <br />
                     <strong>Condition: </strong> {weatherData.weather[0].main}
-                  </p>
-                </div>
-                <div className="col-6 text-start">
-                  <WeatherImage condition={weatherData.weather[0].main} />
-                </div>
-              </div>
-              <div className="row justify-content-center align-items center">
-                <div className="col-sm-6 col-lg-2 text-lg-center text-sm-end text-center">
-                  <img
-                    width="48"
-                    height="48"
-                    src="https://img.icons8.com/color/48/cloud.png"
-                    alt="cloud"
-                  />
-                  <p>
-                    <strong>Cloud %</strong>
                     <br />
-                    {weatherData.clouds.all}%
+                    <WeatherImage condition={weatherData.weather[0].main} />
                   </p>
                 </div>
-                <div className="col-sm-6 col-lg-2 text-lg-center text-sm-start text-center">
-                  <img
-                    width="48"
-                    height="48"
-                    src="https://img.icons8.com/color/96/windsock--v1.png"
-                    alt="windsock--v1"
-                  />
-                  <p>
-                    <strong>Wind</strong>
-                    <br />
-                    {Math.round(weatherData.wind.speed)} kph
-                  </p>
-                </div>
-                <div className="col-sm-6 col-lg-2 text-lg-center text-sm-end text-center">
-                  <img
-                    width="48"
-                    height="48"
-                    src="https://img.icons8.com/color/96/hygrometer.png"
-                    alt="hygrometer"
-                  />
-                  <p>
-                    <strong>Humidity</strong>
-                    <br />
-                    {weatherData.main.humidity}%
-                  </p>
-                </div>
-                <div className="col-sm-6 col-lg-2 text-lg-center text-sm-start text-center">
-                  <img
-                    width="48"
-                    height="48"
-                    src="https://img.icons8.com/color/48/atmospheric-pressure.png"
-                    alt="atmospheric-pressure"
-                  />
-                  <p>
-                    <strong>Pressure</strong>
-                    <br />
-                    {weatherData.main.pressure} hPa
-                  </p>
-                </div>
-                <div className="col-sm-6 col-lg-2 text-lg-center text-sm-end text-center">
-                  <img
-                    width="48"
-                    height="48"
-                    src="https://img.icons8.com/color/48/sunrise.png"
-                    alt="sunrise"
-                  />
-                  <p>
-                    <strong>Sunrise</strong>
-                    <br />
-                    {getLocalTime(
-                      weatherData.sys.sunrise,
-                      weatherData.timezone
-                    )}
-                  </p>
-                </div>
-                <div className="col-sm-6 col-lg-2 text-lg-center text-sm-start text-center">
-                  <img
-                    width="48"
-                    height="48"
-                    src="https://img.icons8.com/color/48/sunset.png"
-                    alt="sunset"
-                  />
-                  <p>
-                    <strong>Sunset</strong>
-                    <br />
-                    {getLocalTime(weatherData.sys.sunset, weatherData.timezone)}
-                  </p>
+                <div className="col-xxl-6">
+                  <div className="row d-lg-flex flex-row justify-content-center justify-content-xxl-start">
+                    <div className="col-4 col-md-2 text-center">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://img.icons8.com/color/48/cloud.png"
+                        alt="cloud"
+                      />
+                      <p>
+                        <strong>Cloud %</strong>
+                        <br />
+                        {weatherData.clouds.all}%
+                      </p>
+                    </div>
+                    <div className="col-4 col-md-2 text-center">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://img.icons8.com/color/96/windsock--v1.png"
+                        alt="windsock--v1"
+                      />
+                      <p>
+                        <strong>Wind</strong>
+                        <br />
+                        {Math.round(weatherData.wind.speed)} kph
+                      </p>
+                    </div>
+                    <div className="col-4 col-md-2 text-center">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://img.icons8.com/color/96/hygrometer.png"
+                        alt="hygrometer"
+                      />
+                      <p>
+                        <strong>Humidity</strong>
+                        <br />
+                        {weatherData.main.humidity}%
+                      </p>
+                    </div>
+                  </div>
+                  <div className="row d-lg-flex flex-row justify-content-center justify-content-xxl-start">
+                    <div className="col-4 col-md-2 text-center">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://img.icons8.com/color/48/atmospheric-pressure.png"
+                        alt="atmospheric-pressure"
+                      />
+                      <p>
+                        <strong>Pressure</strong>
+                        <br />
+                        {weatherData.main.pressure} hPa
+                      </p>
+                    </div>
+                    <div className="col-4 col-md-2 text-center">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://img.icons8.com/color/48/sunrise.png"
+                        alt="sunrise"
+                      />
+                      <p>
+                        <strong>Sunrise</strong>
+                        <br />
+                        {getLocalTime(
+                          weatherData.sys.sunrise,
+                          weatherData.timezone
+                        )}
+                      </p>
+                    </div>
+                    <div className="col-4 col-md-2 text-center">
+                      <img
+                        width="32"
+                        height="32"
+                        src="https://img.icons8.com/color/48/sunset.png"
+                        alt="sunset"
+                      />
+                      <p>
+                        <strong>Sunset</strong>
+                        <br />
+                        {getLocalTime(
+                          weatherData.sys.sunset,
+                          weatherData.timezone
+                        )}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </>
