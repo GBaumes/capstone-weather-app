@@ -50,7 +50,6 @@ const CityForm = () => {
       if (response.ok) {
         setWeather(json); // Set the weather data in the context
         setError(response.status);
-        console.log(json);
 
         const responseGeo = await fetch(
           apiGeo +
@@ -60,8 +59,6 @@ const CityForm = () => {
         const jsonGeo = await responseGeo.json();
 
         setGeo(jsonGeo);
-
-        console.log(jsonGeo);
       }
     } catch (tryError) {
       console.log(tryError);
