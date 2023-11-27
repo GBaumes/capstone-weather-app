@@ -170,13 +170,17 @@ const CityForm = () => {
 
       {showWelcome && (
         <div>
-          <h2 className="text-center">Welcome to my Weather App.</h2>
+          <h2 className="text-center">Welcome to my Weather App</h2>
           <p className="text-center">
             Please enter the name of the city you would like to find along with
             the country from the dropdown.
             <br />
             If the city is in the United States please select the state from the
-            corresponding dropdown aswell
+            corresponding dropdown aswell.
+            <br />
+            <br />
+            If you would like to view the radar map please select the option at
+            the top of the page.
           </p>
         </div>
       )}
