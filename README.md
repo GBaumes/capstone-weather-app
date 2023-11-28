@@ -4,7 +4,7 @@ This project was done as my personal capstone project for my B.S. degree at SUNY
 
 ## Running the app
 
-To run this project first download and install node and the npm package manager that comes with it: https://nodejs.org/en/download/current
+To run this project first download and install node and the node package manager (npm) that comes with it: https://nodejs.org/en/download/current
 
 Once installed clone this repo into a directory on your computer and change directory into the frontend folder:
 
