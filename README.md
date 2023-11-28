@@ -42,15 +42,15 @@ The first command will install all the necessary libraries used in this project 
 
 When you first launch the application you will be greeted by the following main menu screen:
 
-![MainMenu](./src/images/MainScreen.jpg)
+![MainMenu](./frontend/src/images/MainScreen.jpg)
 
 After entering a city into the user input prompts a screen will show you the weather for the area you specified:
 
-![ExampleData](./src/images/example.jpg)
+![ExampleData](./frontend/src/images/example.jpg)
 
 If you would like to use the interactive radar to view the different maps available you can just click on the radar button at the top of the page.
 
-![RadarExample](./src/images/radarexample.jpg)
+![RadarExample](./frontend/src/images/radarexample.jpg)
 
 ## Authors
 
