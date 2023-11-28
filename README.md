@@ -48,7 +48,7 @@ After entering a city into the user input prompts a screen will show you the wea
 
 ![ExampleData](./frontend/src/images/example.jpg)
 
-If you would like to use the interactive radar to view the different maps available you can just click on the radar button at the top of the page.
+If you would like to use the interactive radar to view the different maps available you can just click on the radar button at the top of the page:
 
 ![RadarExample](./frontend/src/images/radarexample.jpg)
 
