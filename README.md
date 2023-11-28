@@ -13,7 +13,7 @@ cd frontend
 ```
 
 Go to: https://openweathermap.org/price  
-Sign up and generate a free api key and create a .env file in the root directory of the frontend folder with the following format:
+Sign up and generate a free api key and create a .env.local file in the root directory of the frontend folder with the following format:
 
 ```
 REACT_APP_API_KEY=YOUR API KEY
