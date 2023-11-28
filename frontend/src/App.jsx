@@ -1,3 +1,6 @@
+/*
+  App.jsx - the main page which routes different URL paths to certain pages.
+*/
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // components

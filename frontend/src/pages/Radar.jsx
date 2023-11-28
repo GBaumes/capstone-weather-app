@@ -1,3 +1,8 @@
+/*
+  Radar.jsx - Page for rendering the weather radar.
+  Calls the OpenLayer Library and generates an interactive map which the layer from the
+  OpenWeather weather map 1.0 API can put the layer on top of the visualize the data with a map.
+*/
 import { useEffect, useState } from "react";
 import "ol/ol.css";
 import Map from "ol/Map";
@@ -9,13 +14,18 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Actual rendered component
 const Radar = () => {
+  // apikey
   const apiKey = process.env.REACT_APP_API_KEY;
 
+  // useState the is set the current layer selected
   const [currentLayer, setCurrentLayer] = useState("precipitation_new");
 
+  // useState for the layerName which will be displayed in the dropdown
   const [layerName, setLayerName] = useState("rain");
 
+  // Event handler for when the user selects a new map from the dropdown.
   const handleLayerChange = (event) => {
     switch (event.target.value) {
       case "precipitation_new":
@@ -40,6 +50,7 @@ const Radar = () => {
     setCurrentLayer(event.target.value);
   };
 
+  // UseEffect which updates whenever a new layer is chosen.
   useEffect(() => {
     const baselayer = new TileLayer({
       source: new XYZ({
@@ -70,6 +81,7 @@ const Radar = () => {
     };
   }, [apiKey, currentLayer]);
 
+  // html rendered
   return (
     <div className="container-fluid d-flex flex-column justify-content-center align-items-center">
       <h1>{capitalizeFirstLetter(layerName)} Map</h1>

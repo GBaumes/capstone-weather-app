@@ -1,16 +1,31 @@
+/*
+  Forecast.jsx component - Calls the OpenWeather Forecast API and processes the data
+  recieved from the response in the json object, and then renders the forecast to the screen.
+*/
 import { useWeather } from "../contexts/WeatherContext";
 import { useEffect, useState } from "react";
 
 import React from "react";
 import WeatherImage from "./WeatherImage";
 
+/*
+  processForecastList function - Processes the response from the api call and then
+  collects the forecast data as an object for each day and stores it in an array.
+
+  takes in a list of forecast data
+*/
 function processForecastList(list) {
+  // create empty array
   const forecastInfo = [];
 
+  // set currentDate equal to todays date
+  // set min and max temps to high infinite number and low infinite number
+  // this way when you encountry a lower or higher temp can store inside variable.
   let currentDate = new Date().toDateString().slice(0, 10);
   let maxHighTemp = Number.MIN_SAFE_INTEGER;
   let minLowTemp = Number.MAX_SAFE_INTEGER;
 
+  // loop over each element in the passed list and store corresponding data.
   list.forEach((item) => {
     let date = new Date(item.dt * 1000).toDateString().slice(0, 10);
     let highTemp = item.main.temp_max;
@@ -22,7 +37,10 @@ function processForecastList(list) {
       minLowTemp = lowTemp;
     }
 
+    // create empty object
     const conditionCounts = {};
+
+    // nest another loop for each day in the original list and get the max and min temps
     list.forEach((item) => {
       let dateCheck = new Date(item.dt * 1000).toDateString().slice(0, 10);
       if (dateCheck === date) {
@@ -38,6 +56,8 @@ function processForecastList(list) {
     let maxCount = 0;
     let dominantWeatherCondition = null;
 
+    // Tally up the number of weather conditions and store the condition with the
+    // most tallys gets stored as the daily condition.
     Object.keys(conditionCounts).forEach((condition) => {
       if (conditionCounts[condition] > maxCount) {
         maxCount = conditionCounts[condition];
@@ -45,6 +65,7 @@ function processForecastList(list) {
       }
     });
 
+    // If the date doesn't equal the current day then store the data in the dailyForecastInfo object
     if (date !== currentDate) {
       const dailyForecastInfo = {
         date: date,
@@ -62,11 +83,15 @@ function processForecastList(list) {
   return forecastInfo;
 }
 
+// Actualy Forecast component
 const Forecast = () => {
+  // Context for current data
   const { weatherData, units } = useWeather();
 
+  // forecast array useState hook
   const [forecast, setForecast] = useState([]);
 
+  // Update the forecast when a new weatherData occurs
   useEffect(() => {
     const getForecastData = async () => {
       const apiKey = process.env.REACT_APP_API_KEY;

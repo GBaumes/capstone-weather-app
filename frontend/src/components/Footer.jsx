@@ -1,3 +1,6 @@
+/*
+  Footer.jsx component - Renders the footer at the bottom of the page.
+*/
 import React from "react";
 
 const Footer = () => {

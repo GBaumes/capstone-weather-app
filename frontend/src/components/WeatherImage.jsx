@@ -1,3 +1,8 @@
+/*
+  WeatherImage.jsx component - takes in a string condition and runs a switch to determine 
+  which icon to return to the component call.
+*/
+
 const WeatherImage = ({ condition }) => {
   switch (condition) {
     case "Thunderstorm":

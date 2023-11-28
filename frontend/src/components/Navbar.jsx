@@ -1,14 +1,22 @@
+/*
+  Navbar.jsx component - renders the navbar at the top of the screen.
+*/
+
 import { Link } from "react-router-dom";
 import { useWeather } from "../contexts/WeatherContext";
 
+// Actual navbar component
 const Navbar = () => {
+  // Context for tracking new data
   const { setWeather, setWelcome } = useWeather();
 
+  // Handler for when a user clicks the icon on the navbar.
   const handleIconClick = async (event) => {
     setWeather(null);
     setWelcome(true);
   };
 
+  // html rendered
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary mb-3">
       <div className="container-fluid">

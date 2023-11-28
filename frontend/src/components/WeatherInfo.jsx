@@ -1,3 +1,6 @@
+/*
+  WeatherInfo.jsx component for displaying the weather info from the context.
+*/
 import React from "react";
 import { useWeather } from "../contexts/WeatherContext";
 import WeatherImage from "./WeatherImage";

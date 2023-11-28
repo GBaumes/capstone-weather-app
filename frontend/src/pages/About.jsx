@@ -1,3 +1,6 @@
+/*
+  About.jsx - The html for the about page.
+*/
 import React from "react";
 
 const About = () => {

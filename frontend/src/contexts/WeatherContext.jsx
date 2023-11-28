@@ -1,3 +1,6 @@
+/*
+  WeatherContext.jsx - React context which tracks changing input and updates as called in other components.
+*/
 import { createContext, useContext, useState } from "react";
 
 const WeatherContext = createContext();
